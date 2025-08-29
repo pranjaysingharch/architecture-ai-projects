@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# CrewAI
+crew-ai/__pycache__/
+crew-ai/*.pyc
+crew-ai/.ipynb_checkpoints/
