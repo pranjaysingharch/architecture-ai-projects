@@ -1,0 +1,80 @@
+---
+title: User Tools MCP Server
+description: Documentation for the FastAPI MCP server for user management
+---
+
+# User Tools MCP Server
+
+This project provides a FastAPI-based MCP (Model Context Protocol) server for user management operations. It exposes RESTful endpoints for listing users and registering new users, and integrates with the MCP protocol using `fastapi_mcp`.
+
+## Features
+- **List Users**: Retrieve all users from the backend service.
+- **Register User**: Register a new user with username, email, and password.
+- **MCP Integration**: Easily mount MCP tools for interoperability.
+
+## Endpoints
+
+### `GET /users`
+Fetches all users from the backend service.
+
+```http
+GET /users
+```
+
+**Response:**
+```json
+[
+  {
+    "username": "johndoe",
+    "email": "john@example.com"
+  },
+  ...
+]
+```
+
+### `POST /users/register`
+Registers a new user.
+
+```http
+POST /users/register
+```
+
+**Request Body:**
+```json
+{
+  "username": "janedoe",
+  "email": "jane@example.com",
+  "password": "securepassword"
+}
+```
+
+**Response:**
+```json
+{
+  "message": "User registered successfully"
+}
+```
+
+## Running the Server
+
+To start the FastAPI MCP server on a custom port (e.g., 6274):
+
+```bash
+uvicorn user-tools-mcp:app --reload --port 6274
+```
+
+## MCP Integration
+
+The server uses `FastApiMCP` to mount MCP tools for enhanced interoperability:
+
+```python
+from fastapi_mcp import FastApiMCP
+mcp = FastApiMCP(app, name="User MCP", description="Simple application to calculate BMI")
+mcp.mount()
+```
+
+## Error Handling
+All endpoints return detailed error information and tracebacks in case of failures.
+
+## License
+MIT
