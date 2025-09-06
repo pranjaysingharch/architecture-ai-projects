@@ -34,5 +34,5 @@ def register_user(username: str, email: str, password: str) -> dict:
     
 
 
-mcp = FastApiMCP(app, name="User MCP", description="Simple application to calculate BMI")
+mcp = FastApiMCP(app, name="User MCP", description="Simple application to do user management")
 mcp.mount()
