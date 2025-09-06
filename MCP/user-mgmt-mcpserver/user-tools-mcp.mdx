@@ -7,6 +7,37 @@ description: Documentation for the FastAPI MCP server for user management
 
 This project provides a FastAPI-based MCP (Model Context Protocol) server for user management operations. It exposes RESTful endpoints for listing users and registering new users, and integrates with the MCP protocol using `fastapi_mcp`.
 
+
+## What is MCP (Model Context Protocol)?
+
+MCP (Model Context Protocol) is an open protocol designed to standardize the way tools, models, and services interact in a composable, interoperable, and automated fashion. MCP enables different systems to expose their capabilities as "tools" that can be discovered and invoked by clients, agents, or other services, regardless of their underlying implementation language or framework.
+
+### Key Concepts
+- **Tool**: A function or operation exposed by a service (e.g., register a user, list users).
+- **Server**: Hosts and exposes tools via a standard API (REST, gRPC, etc.) and MCP metadata.
+- **Client/Agent**: Discovers and invokes tools from one or more MCP servers, enabling automation and orchestration.
+
+### Why MCP?
+MCP makes it easy to:
+- Integrate diverse tools and services into unified workflows
+- Automate complex tasks by chaining tool invocations
+- Enable interoperability between different programming languages and platforms
+
+### MCP in This Project
+In this project, the FastAPI server exposes user management operations as MCP tools using the `fastapi_mcp` library. This allows any MCP-compatible client or agent to discover and invoke user management operations (like registering a user or listing users) in a standardized way.
+
+#### Example MCP Tool Metadata
+When the server starts, it publishes metadata describing its tools (operations), their parameters, and expected responses. This metadata can be consumed by clients for dynamic tool discovery and invocation.
+
+#### Example: Mounting MCP Tools in FastAPI
+```python
+from fastapi_mcp import FastApiMCP
+mcp = FastApiMCP(app, name="User MCP", description="User management MCP server")
+mcp.mount()
+```
+
+---
+
 ## Features
 - **List Users**: Retrieve all users from the backend service.
 - **Register User**: Register a new user with username, email, and password.
